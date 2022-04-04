@@ -8,8 +8,8 @@ def BriCon(img, b, c, allLayers=False):
 
 
 def BriConAllImages(b, c, allLayers=True):
-    for image in gimp.image_list():
-        BriCon(image, b, c, allLayers)
+    for img in gimp.image_list():
+        BriCon(img, b, c, allLayers)
 
 
 def Gamma(img, gam, allLayers=False):
@@ -22,8 +22,8 @@ def Gamma(img, gam, allLayers=False):
 
 
 def GammaAllImages(gam, allLayers=True):
-    for image in gimp.image_list():
-        Gamma(image, gam, allLayers)
+    for img in gimp.image_list():
+        Gamma(img, gam, allLayers)
 
 
 def FlipH(img, allLayers=False):
@@ -36,8 +36,8 @@ def FlipH(img, allLayers=False):
 
 
 def FlipHAllImages(allLayers=True):
-    for image in gimp.image_list():
-        FlipH(image, allLayers)
+    for img in gimp.image_list():
+        FlipH(img, allLayers)
 
 
 def FlipV(img, allLayers=False):
@@ -50,5 +50,22 @@ def FlipV(img, allLayers=False):
 
 
 def FlipVAllImages(allLayers=True):
-    for image in gimp.image_list():
-        FlipV(image, allLayers)
+    for img in gimp.image_list():
+        FlipV(img, allLayers)
+
+
+def Caption(img):
+    txt_layer = pdb.gimp_text_layer_new(
+        img, img.name, "Arial", 0.05*img.height, 0)
+    img.add_layer(txt_layer, 0)
+    pdb.gimp_layer_set_offsets(txt_layer, 0 + 10, img.height - 30)
+    pdb.gimp_text_layer_set_color(txt_layer, (1.0, 1.0, 1.0, 1.0))
+
+
+def CaptionAllImageso():
+    for img in gimp.image_list():
+        txt_layer = pdb.gimp_text_layer_new(
+            img, img.name, "Arial", 0.05*img.height, 0)
+        img.add_layer(txt_layer, 0)
+        pdb.gimp_layer_set_offsets(txt_layer, 0 + 10, img.height - 30)
+        pdb.gimp_text_layer_set_color(txt_layer, (1.0, 1.0, 1.0, 1.0))
