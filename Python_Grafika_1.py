@@ -1,59 +1,54 @@
 def BriCon(img, b, c, allLayers=False):
     if (allLayers):
-        layers = img.layers
-        for i in range(len(layers)):
-            drw = layers[i]
-            pdb.gimp_drawable_brightness_contrast(drw, b, c)
+        for layer in img.layers:
+            pdb.gimp_drawable_brightness_contrast(layer, b, c)
     else:
-        drw = pdb.gimp_image_get_active_drawable(img)
-        pdb.gimp_drawable_brightness_contrast(drw, b, c)
+        pdb.gimp_drawable_brightness_contrast(
+            pdb.gimp_image_get_active_drawable(img), b, c)
 
 
-def BriConAllImages(b, c, allLayers=False):
-    for i in range(len(gimp.image_list())):
-        img = gimp.image_list()[i]
-        BriCon(img, b, c, allLayers)
+def BriConAllImages(b, c, allLayers=True):
+    for image in gimp.image_list():
+        BriCon(image, b, c, allLayers)
 
-# def BriConOneLayer(img, b, c):
-#     drw = pdb.gimp_image_get_active_drawable(img)
-#     pdb.gimp_drawable_brightness_contrast(drw, b, c)
-
-
-# def BriConAllLayers(img, b, c):
-#     # layers = pdb.gimp_image_get_layers(img)[1]
-#     layers = img.layers
-#     for i in range(len(layers)):
-#         drw = layers[i]
-#         pdb.gimp_drawable_brightness_contrast(drw, b, c)
 
 def Gamma(img, gam, allLayers=False):
     if (allLayers):
-        layers = img.layers
-        for i in range(len(layers)):
-            drw = layers[i]
-            pdb.gimp_drawable_levels(drw, 0, 0, 1, False, gam, 0, 1, False)
+        for layer in img.layers:
+            pdb.gimp_drawable_levels(layer, 0, 0, 1, False, gam, 0, 1, False)
+    else:
+        pdb.gimp_drawable_levels(pdb.gimp_image_get_active_drawable(
+            img), 0, 0, 1, False, gam, 0, 1, False)
+
+
+def GammaAllImages(gam, allLayers=True):
+    for image in gimp.image_list():
+        Gamma(image, gam, allLayers)
+
+
+def FlipH(img, allLayers=False):
+    if (allLayers):
+        for layer in img.layers:
+            pdb.gimp_item_transform_flip_simple(layer, 0, True, 0.0)
     else:
         drw = pdb.gimp_image_get_active_drawable(img)
-        pdb.gimp_drawable_levels(drw, 0, 0, 1, False, gam, 0, 1, False)
+        pdb.gimp_item_transform_flip_simple(drw, 0, True, 0.0)
 
 
-# def GammaOneLayer(img, gam):
-#     drw = pdb.gimp_image_get_active_drawable(img)
-#     pdb.gimp_drawable_levels(drw, 0, 0, 1, False, gam, 0, 1, False)
+def FlipHAllImages(allLayers=True):
+    for image in gimp.image_list():
+        FlipH(image, allLayers)
 
 
-# def GammaAllLayers(img, gam):
-#     layers = img.layers
-#     for i in range(len(layers)):
-#         drw = layers[i]
-#         pdb.gimp_drawable_levels(drw, 0, 0, 1, False, gam, 0, 1, False)
+def FlipV(img, allLayers=False):
+    if (allLayers):
+        for layer in img.layers:
+            pdb.gimp_item_transform_flip_simple(layer, 1, True, 0.0)
+    else:
+        drw = pdb.gimp_image_get_active_drawable(img)
+        pdb.gimp_item_transform_flip_simple(drw, 1, True, 0.0)
 
 
-def FlipHOneLayer(img):
-    drw = pdb.gimp_image_get_active_drawable(img)
-    pdb.gimp_item_transform_flip_simple(drw, 0, True, 0.0)
-
-
-def FlipVOneLayer(img):
-    drw = pdb.gimp_image_get_active_drawable(img)
-    pdb.gimp_item_transform_flip_simple(drw, 1, True, 0.0)
+def FlipVAllImages(allLayers=True):
+    for image in gimp.image_list():
+        FlipV(image, allLayers)
