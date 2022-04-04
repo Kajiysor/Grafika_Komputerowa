@@ -62,7 +62,7 @@ def Caption(img):
     pdb.gimp_text_layer_set_color(txt_layer, (1.0, 1.0, 1.0, 1.0))
 
 
-def CaptionAllImageso():
+def CaptionAllImages():
     for img in gimp.image_list():
         txt_layer = pdb.gimp_text_layer_new(
             img, img.name, "Arial", 0.05*img.height, 0)
