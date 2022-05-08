@@ -1,0 +1,26 @@
+/@x 125 def
+/@y 125 def
+/@linejoin 0 def
+/@linecap 0 def
+
+/#lines {@x 0 translate
+         0 0 moveto 65 100 lineto 110 35 lineto
+         gsave % save graphics state 
+         1 0.5 1 setrgbcolor 10 setlinewidth stroke 
+         grestore % restore graphics state
+         0.5 setlinewidth stroke
+         } def
+
+3 {
+    0 @y translate
+    /@y @y 125 add def
+    @linejoin setlinejoin
+    /@linecap 0 def
+    3 { 
+        @linecap setlinecap
+        #lines
+        /@linecap @linecap 1 add def
+    } repeat
+    grestore
+    /@linejoin @linejoin 1 add def
+} repeat

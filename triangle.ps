@@ -1,0 +1,16 @@
+% unit = 1 mm
+72 25.4 div dup scale
+
+50 50 translate
+0 0 moveto
+50 0 lineto
+50 0 translate
+120 rotate
+50 0 lineto
+closepath
+gsave % save triangle
+1 1 0 setrgbcolor
+fill
+grestore % restore triangle
+1 0 0 setrgbcolor
+stroke
