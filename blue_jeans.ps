@@ -1,0 +1,44 @@
+a5 % new_page
+50 250 translate
+
+/#pattern_size 2 def
+/#yoffset 15 def
+
+/#PentaStar {
+    1 0 moveto
+    0 1 4 {
+        144 rotate
+        5 0 lineto
+    } for
+    closepath stroke   
+} def
+
+<<
+/PaintType 1 
+/PatternType 1
+/TilingType 1
+/XStep #pattern_size 2 mul
+/YStep #pattern_size 2 mul
+/BBox [#pattern_size neg #pattern_size neg #pattern_size #pattern_size]
+/PaintProc
+{
+#pattern_size dup scale
+#PentaStar
+1 1 0 setrgbcolor
+fill
+1 #pattern_size div dup scale
+}    
+>>
+
+matrix
+makepattern
+/#pattern exch def
+
+/Comic-Sans-Bold 64 selectfont
+
+0 120 255 setrgbcolor
+
+#pattern setpattern
+0 0 moveto
+0 #yoffset (Blue) ashow
+0 #yoffset neg ( jeans) ashow
