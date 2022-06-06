@@ -1,0 +1,44 @@
+/#Bezier {
+    /@y_4 exch def
+    /@x_4 exch def
+    /@y_3 exch def
+    /@x_3 exch def
+    /@y_2 exch def
+    /@x_2 exch def
+    currentpoint /@y_1 exch def /@x_1 exch def
+
+    0 1 0 setrgbcolor
+    @x_1 @y_1 moveto @x_2 @y_2 @x_3 @y_3 @x_4 @y_4 rcurveto  
+    
+    gsave   
+    newpath  
+
+    /@y_4 @y_4 @y_1 add def  
+    /@x_4 @x_4 @x_1 add def
+    /@y_3 @y_3 @y_1 add def
+    /@x_3 @x_3 @x_1 add def
+    /@y_2 @y_2 @y_1 add def
+    /@x_2 @x_2 @x_1 add def
+
+    1 0 0 setrgbcolor
+    @x_1 @y_1 2 0 360 arc fill
+    @x_4 @y_4 2 0 360 arc fill
+    0 0 0 setrgbcolor
+    @x_2 @y_2 2 0 360 arc fill
+    @x_3 @y_3 2 0 360 arc fill
+
+    [4] 0 setdash
+    @x_1 @y_1 moveto @x_2 @y_2 lineto
+    @x_3 @y_3 moveto @x_4 @y_4 lineto
+    stroke
+
+    grestore
+} def
+
+a5 % new_page
+0.6 0.6 scale
+25 450 moveto
+100 100 200 100 200 0 #Bezier
+150 -150 100 150 250 0 #Bezier
+50 -100 100 0 200 -100 #Bezier
+stroke
